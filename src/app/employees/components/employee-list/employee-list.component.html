@@ -1,0 +1,32 @@
+<button class="btn btn-info" style="float: right; margin: 10px;" [routerLink]="['/employees/create']">ADD NEW EMPLOYEE</button>
+<div *ngIf="(employees$ | async) as employees">
+  <h3>Employees</h3>
+  <table class="table table-hover">
+    <thead>
+    <tr class="table-primary">
+      <th scope="col">ID</th>
+      <th scope="col"></th>
+      <th scope="col">NAME</th>
+      <th scope="col">SALARY</th>
+      <th scope="col">AGE</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+    <tr *ngFor="let employee of (employees$ | async)">
+      <th scope="row">{{employee.id}}</th>
+      <td><img src="{{employee.profile_image }}" height="60px" width="60px"></td>
+      <td>{{employee.employee_name}}</td>
+      <td>{{employee.employee_salary}}</td>
+      <td>{{employee.employee_age}}</td>
+      <th>
+        <button type="button"
+                [routerLink]="['/employees/update', employee.id ]"
+                class="btn btn-warning m-lg-5">Edit</button>
+        <button type="button" class="btn btn-danger">Delete</button>
+      </th>
+    </tr>
+    </tbody>
+  </table>
+</div>
